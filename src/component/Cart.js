@@ -1,11 +1,19 @@
 import React from 'react'
 import { Button, Card } from 'react-bootstrap';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { remove } from '../store/CartSlice';
 
 const Cart = () => {
 
 
   const cartProduct = useSelector(state=> state.Cart);
+  const removeDispatch = useDispatch();
+
+  const removeItem = (remId)=>{
+    console.log('remId-->',remId);
+    // despatch a remove action
+    removeDispatch(remove(remId));
+  }
 
   const cartItems = cartProduct && cartProduct.map((pData, pIndex) => (
       <div className="col-md-3" key={pData.id} style={{marginBottom:'10px'}}>
@@ -20,7 +28,7 @@ const Cart = () => {
             </Card.Text>
           </Card.Body>
           <Card.Footer style={{background:'white'}}>
-            <Button variant="primary" >Add to Cart</Button>
+            <Button variant="danger" onClick={()=>removeItem(pData.id)} >Remove Item</Button>
           </Card.Footer>
         </Card>
       </div>
