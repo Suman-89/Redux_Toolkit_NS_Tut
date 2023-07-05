@@ -10,7 +10,7 @@ const NavBarPanel = () => {
   const showItemNo = useSelector(state=> state.Cart)
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-body-tertiary" sticky="top" >
       <Container fluid>
         <Navbar.Brand href="#">Redux Toolkit</Navbar.Brand>
           <Nav>
